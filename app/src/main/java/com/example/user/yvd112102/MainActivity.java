@@ -1,8 +1,11 @@
 package com.example.user.yvd112102;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -69,6 +72,17 @@ public class MainActivity extends AppCompatActivity {
                                     android.R.layout.simple_list_item_1,
                                     dataHandler.titleList
                             );
+
+                            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    Intent it = new Intent(MainActivity.this, DetailActivity.class);
+                                    it.putExtra("str_url", dataHandler.linkList.get(position));
+                                    startActivity(it);
+
+                                }
+                            });
+
                             lv.setAdapter(adapter);
                         }
                     });
